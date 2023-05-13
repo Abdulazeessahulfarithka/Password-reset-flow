@@ -6,7 +6,8 @@ app.use(express.json());
 app.use(cors());
 const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 const URL = process.env.DB;
 const usermail = process.env.USER;
 const mailpassword = process.env.PASSWORD;
@@ -90,16 +91,13 @@ app.post("/sendmail", async function (req, res) {
         .updateOne({ email: req.body.email }, { $set: { rnum: randomnum } });
       var transporter = nodemailer.createTransport({
         service: "gmail",
-        host: "smtp.gmail.com",
-        secure: false,
         auth: {
           user: `${usermail}`,
           pass: `${mailpassword}`,
         },
       });
-
       var mailOptions = {
-        from: "kaazees88@gmail.com",
+        from: "kaazees31@gmail.com",
         to: `${req.body.email}`,
         subject: "User verification",
         text: `${randomnum}`,
