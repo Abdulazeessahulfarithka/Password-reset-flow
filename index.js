@@ -3,7 +3,11 @@ const app = express();
 const cors = require("cors");
 const bcryptjs = require("bcryptjs");
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 const dotenv = require("dotenv");
